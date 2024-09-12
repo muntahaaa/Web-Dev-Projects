@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('./Background.jpg');
+    background-size: cover;
+  
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+#title {
+    color: brown;
+    font-family: "Nerko One", cursive;
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 0px;
+    font-weight: 400;
+    font-style: normal;
+    align-items: center;
+    font-size: 90px;
+}
+#inputList{
+    margin-left: 50%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.styled-input {
+    align-items: center;
+    font-size: 40px;
+    font-family:  "Nerko One", cursive;
+    color: brown;
+    list-style: circle;
+    background: transparent;
+    border: none;
+   
+}
+.selected {
+    color: red;
+
+}
+#btnHolder,#enterItem{
+  
+  display:flex ;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 20px;
+  
+ 
+
+}
+.btn{
+    background-color: brown;
+    color: bisque;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+    margin: 20px;
+   
+}
+
+#EnterBox{
+    background-color: brown;
+    color: bisque;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+    margin: 20px;
+}

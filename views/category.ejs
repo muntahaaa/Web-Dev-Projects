@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add More Input Fields</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesCategory.css">
+</head>
+
+<body>
+    <h1 id="title">Find your choice</h1>
+    <div class="Background_Box">
+
+        <ul id="inputList">
+            <li><input type="text" class="styled-input" value="Classic"></li>
+            <li><input type="text" class="styled-input" value="History"></li>
+            <li><input type="text" class="styled-input" value="Sci-fi"></li>
+            <li><input type="text" class="styled-input" value="Comedy"></li>
+            <li><input type="text" class="styled-input" value="Educational"></li>
+        </ul>
+
+        <div id="btnHolder">
+            <button id="addMoreButton" class="btn">Add More Category</button>
+            <button id="delete-button" class="btn">Delete Selected Category</button>
+            <!-- Correct form with submit button -->
+        </div>
+        <div id="enterItem">
+            <form action="/enter" method="POST">
+                <!-- This input field will display the selected category name -->
+                <label for="EnterBox" style="color:brown;font-size:20px;">Enter the Category:</label>
+                <input type="text" id="EnterBox" name="category" value="" required>
+                <input type="submit" class="btn" value="Submit">
+            </form>
+        </div>
+
+
+    </div>
+    <script>
+        // JavaScript to handle adding new input fields
+        const createListItem = (value) => {
+            const listItem = document.createElement('li');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'styled-input';
+            input.value = value;
+            input.addEventListener('click', () => selectInput(input));
+            listItem.appendChild(input);
+            return listItem;
+        };
+
+        // Handle input selection
+        const selectInput = (input) => {
+            if (selectedInput) selectedInput.classList.remove('selected');
+            selectedInput = input;
+            input.classList.add('selected');
+        };
+
+        // Add a new input item
+        const addNewInput = () => {
+            const value = prompt("Enter the value for the new input:");
+            if (value) document.getElementById('inputList').appendChild(createListItem(value));
+            else alert("No value entered. Please try again.");
+        };
+
+        // Delete the selected input item
+        const deleteSelectedInput = () => {
+            if (selectedInput) {
+                selectedInput.parentElement.remove();
+                selectedInput = null;
+            } else alert('Please select a category to delete.');
+        };
+
+        // Initialize event listeners
+        document.getElementById('addMoreButton').addEventListener('click', addNewInput);
+        document.getElementById('delete-button').addEventListener('click', deleteSelectedInput);
+        document.querySelectorAll('.styled-input').forEach(input => input.addEventListener('click', () => selectInput(input)));
+
+        // Track selected input
+        let selectedInput = null;
+    </script>
+
+</body>
+
+</html>

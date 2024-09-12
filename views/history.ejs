@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/bookList.css">
+</head>
+<body>
+   <h1>Here goes your History Collection</h1> 
+   <div class="bookBox">
+    <ol class="olList">
+        <li class="listItem">Name: <br>
+            PDF Link:<br>
+            Author Name:<br>
+            <div class="comment">Comments:</div>
+        </li>
+        <li class="listItem">Name: <br>
+            PDF Link:<br>
+            Author Name:<br>
+            <div class="comment">Comments:</div>
+        </li>
+
+    </ol>
+   </div>
+
+   <script>
+    function convertURLtoPDF(url){
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'file.pdf';
+        link.dispatchEvent(new MouseEvent('click'));
+    }
+   </script>
+</body>
+</html>
+

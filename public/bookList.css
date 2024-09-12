@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('./books.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+h1{
+    color: #814255;
+    font-family: "Nerko One", cursive;
+}
+.olList{
+    color: #814255;
+    font-family: "Nerko One", cursive;
+    font-size: 20px; 
+}
+.olList > .comment{
+    background-color: bisque;
+}
+.listItem{
+    margin:10px;
+}
