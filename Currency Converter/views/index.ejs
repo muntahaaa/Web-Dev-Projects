@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3>Currency Converter</h3>
+        <form>
+            <p id="amount">Enter Amount:</p>
+            <input type="text" class="inputBox" id="amountOfMoney">
+            <div class="dropdown">
+                <div class="from">
+                    <p>From</p>
+                    <div class="select-container">
+                        <select name="from" id="from-currency-select">
+                            <% for (let currCode in countryList) { %>
+                                <option value="<%= currCode %>">
+                                    <%= currCode %>
+
+                                </option>
+
+                                <% } %>
+                        </select>
+                        <img id="from-flag-image" src="https://flagsapi.com/US/flat/64.png" alt="Currency Flag">
+
+                        <script>
+                            const selectElementF = document.getElementById('from-currency-select');
+                            const flagImageF = document.getElementById('from-flag-image');
+                            const countryListF =<%= JSON.stringify(countryList) %>; // Correct embedding of countryList
+
+                            selectElementF.addEventListener('change', function () {
+                                const selectedCurrencyF = this.value;
+                                const countryCodeF = countryListF[selectedCurrencyF]; // Get country code from the list
+                                console.log('User selected:', selectedCurrencyF);
+                                if (countryCodeF) {
+                                    flagImageF.src = `https://flagsapi.com/${countryCodeF}/flat/64.png`; // Update flag
+                                } else {
+                                    console.error('Invalid country code for selected currency:', selectedCurrencyF);
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class="to">
+                    <p>To</p>
+                    <div class="select-container">
+                        <select name="to" id="to-currency-select">
+
+                            <% for (let currCode in countryList) { %>
+                                <option value="<%= currCode %>">
+                                    <%= currCode %>
+                                </option>
+
+                                <% } %>
+                        </select>
+                        <img id="to-flag-image" src="https://flagsapi.com/US/flat/64.png" alt="Currency Flag">
+
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const selectElementT = document.getElementById('to-currency-select');
+                                const flagImageT = document.getElementById('to-flag-image');
+                                const countryListT = <%= JSON.stringify(countryList) %>; // Embed countryList
+
+                                selectElementT.addEventListener('change', function () {
+                                    const selectedCurrencyT = this.value;
+                                    const countryCodeT = countryListT[selectedCurrencyT]; // Get country code from the list
+                                    if (countryCodeT) {
+                                        flagImageT.src = `https://flagsapi.com/${countryCodeT}/flat/64.png`; // Update flag image
+                                    } else {
+                                        console.error('Invalid country code for selected currency:', selectedCurrencyT);
+                                    }
+                                });
+
+                                // Trigger the change event on page load to set the correct initial flag
+                                selectElementT.dispatchEvent(new Event('change'));
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="msg">Convertion Result:___</div>
+        <button id="btn" onclick="converter()">Get exchange rate</button>
+    </div>
+
+    <script>
+        const converter = () => {
+            let amount = document.getElementById('amountOfMoney').value;
+            let fromCurr = document.getElementById('from-currency-select').value;
+            let toCurr = document.getElementById('to-currency-select').value;
+
+            var myHeaders = new Headers();
+            myHeaders.append("apikey", "kGAMU5ZjUPuHpNh35XMnNojpK3Wx9qyh");
+
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow',
+                headers: myHeaders
+            };
+
+            fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${toCurr}&from=${fromCurr}&amount=${amount}`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    if (result.result) {
+                        document.getElementById('msg').innerText = `Conversion Result: ${result.result}`;
+                    } else {
+                        document.getElementById('msg').innerText = `Conversion Error`;
+                    }
+                })
+                .catch(error => {
+                    console.log('error', error);
+                    document.getElementById('msg').innerText = `Error occurred while converting`;
+                });
+        }
+    </script>
+
+    <script src="codes.js"></script>
+</body>
+
+</html>

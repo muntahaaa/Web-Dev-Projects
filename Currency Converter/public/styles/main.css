@@ -1,0 +1,68 @@
+body{
+    background-color: blanchedalmond;
+   
+}
+
+.container{
+    display: flex;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+   
+    flex-direction: column;
+    height: 100vh;
+    margin: 5rem 5rem ;
+    font-size: 2rem;
+}
+.dropdown{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    width: 100%;
+   
+}
+ 
+.from p, .to p {
+    margin: 0 0 0 0; /* Adjust to control space between text and dropdown */
+    font-size: 20px;
+}
+
+.from select, .to select {
+    width:100%;
+    font-size: 18px;
+   
+    padding: 3px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+.inputBox {
+    width: 100%; /* Adjust width as needed */
+    padding: 10px; /* Increases the height by adding inner spacing */
+    font-size: 18px; /* Makes the text inside larger */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensures padding doesn't affect the overall width */
+}
+#amount{
+    font-size: 23px;
+    margin-bottom: 0;
+}
+#msg{
+    font-size: 20px;
+    background-color: burlywood;
+    padding: 10px;
+    
+}
+#btn{
+    width: 60%;
+    background-color: purple;
+    color: white;
+    font-size: 18px;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.container h3{
+    color: purple;
+}
